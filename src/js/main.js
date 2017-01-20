@@ -31,9 +31,6 @@ var PreloaderScene = {
   },
 
   create: function () {
-    this.game.world.setBounds(0, 0, 800, 600);
-    this.game.physics.startSystem(Phaser.Physics.P2JS);
-    this.game.physics.p2.setImpactEvents(true);
     
     this.game.state.start('play');
   }
