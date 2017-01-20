@@ -1,10 +1,16 @@
 'use strict';
 
+var Background = require('./Background.js');
+var EnemyController = require('./EnemyController.js');
+
 var PlayScene = {
   create: function () {
-    var logo = this.game.add.sprite(
-      this.game.world.centerX, this.game.world.centerY, 'logo');
-    logo.anchor.setTo(0.5, 0.5);
+    Background.create(this.game);
+    EnemyController.create(this.game);
+  },
+  update: function() {
+    Background.update(this.game);
+    EnemyController.update(this.game, Background.time);
   }
 };
 

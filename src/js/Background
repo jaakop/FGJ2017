@@ -1,0 +1,28 @@
+'use strict';
+
+var Background = {
+  create: function () {
+  console.log("TESTESTE");
+    var bottomGroup = this.game.add.group(); 
+    
+    var height = this.game.height-32;
+    console.log(height);
+    
+    for(var i = 0; i < 30; i++) {
+      var tile = this.game.add.sprite(
+        32*i, 400, 'bottom_tile');
+      tile.scale.setTo(2, 2);
+      
+      bottomGroup.addChild(tile);
+      
+      
+      
+    }
+    
+  },
+  test: function() {
+    console.log("JEEJEE");
+  }
+};
+
+module.exports = Background;
