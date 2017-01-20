@@ -1,0 +1,23 @@
+{
+  "version": "0.0.0",
+  "name": "gravemup",
+  "version": "0.0.0",
+  "author": "",
+  "license": "CC-BY-SA-4.0",
+  
+  "repository": "K-Peura/ggj17",
+  "author": "K-Peura",
+  
+  "dependencies": {
+    "browserify": "*",
+    "browser-sync": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-connect": "*",
+    "gulp-util": "*",
+    "merge-stream": "*",
+    "phaser": "*",
+    "vinyl-source-stream": "*",
+    "watchify": "*"
+  }
+}
