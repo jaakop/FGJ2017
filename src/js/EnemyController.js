@@ -57,7 +57,6 @@ var EnemyController = {
         game.physics.p2.enable(vihu.sprite);
         
         vihu.sprite.body.setCollisionGroup(this.enemyCollisionGroup);
-        
         vihu.sprite.body.fixedRotation = true;
         vihu.sprite.body.thrust(600);
         vihu.sprite.body.collideWorldBounds = true;

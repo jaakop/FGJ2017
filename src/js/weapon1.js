@@ -1,6 +1,8 @@
 'use strict';
 
 var Weapon1 = {
+    lastShot: 0,
+    coolDown: 300,
     bullets: {},
 
     initialize: function (game, num, image) {
@@ -15,6 +17,13 @@ var Weapon1 = {
             bullet.body.collideWorldBounds = false;
             bullet.checkWorldBounds = true;
             bullet.outOfBoundsKill = true;
+        }
+    },
+
+    getBullet: function(){
+        if(this.lastShot + this.coolDown < Date.now()){
+            this.lastShot = Date.now();
+            return this.bullets.getFirstExists(false);
         }
     }
 }

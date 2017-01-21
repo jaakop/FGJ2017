@@ -1,7 +1,7 @@
 'use strict';
 
 var PlayScene = require('./play_scene.js');
-
+var IntroScene = require('./intro_scene.js');
 
 var BootScene = {
   preload: function () {
@@ -31,8 +31,7 @@ var PreloaderScene = {
   },
 
   create: function () {
-    
-    this.game.state.start('play');
+    this.game.state.start('intro');
   }
 };
 
@@ -42,6 +41,7 @@ window.onload = function () {
 
   game.state.add('boot', BootScene);
   game.state.add('preloader', PreloaderScene);
+  game.state.add('intro', IntroScene);
   game.state.add('play', PlayScene);
 
   game.state.start('boot');
