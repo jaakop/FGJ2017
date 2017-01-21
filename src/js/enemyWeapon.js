@@ -8,7 +8,7 @@ var EnemyWeapon = {
 
     initialize: function (game, num, image) {
         this.bullets = game.add.group();
-        this.collisionGroup = game.physics.p2.createCollisionGroup();
+        //this.collisionGroup = game.physics.p2.createCollisionGroup();
         for (var i = 0; i < num; i++) {
             var bullet = this.bullets.create(0, 0, image);
             bullet.exists = false;
@@ -19,7 +19,7 @@ var EnemyWeapon = {
             bullet.body.collideWorldBounds = false;
             bullet.checkWorldBounds = true;
             bullet.outOfBoundsKill = true;
-            bullet.body.setCollisionGroup(this.collisionGroup);
+            //bullet.body.setCollisionGroup(this.collisionGroup);
         }
     },
 

@@ -92,6 +92,7 @@ var Player = {
   bulletHits: function(bullet, target){
     console.log("Bullet hits!");
     Effects.explode(target.sprite, 'explosion');
+    bullet.sprite.kill();
   }
 };
 
