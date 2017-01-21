@@ -30,6 +30,8 @@ var EnemyController = {
       var vihu = this.enemyTable[vihuIndex];
       if(vihu.time === time && !vihu.sprite) {
         vihu.sprite = game.add.sprite(game.width, vihu.posy, vihu.spriteName);
+        vihu.sprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
+        
         this.enemyGroup.addChild(vihu.sprite);
         
         var scaleModifier = 1 + vihu.gravityMultiplier;
@@ -91,13 +93,7 @@ var EnemyController = {
             
               
           }
-        } else if(vihu.type === "mine" && time%vihu.frequency) {
-//          this.calculateGravity(game, playerController.player, vihu);
-            vihu.attractor.start(false, 1000, 250, 7);
-          //this.accelerateToObject(game, vihu.sprite, playerController.emitter, 10);
-  
-          
-        }
+        } 
         
             
         if(vihu.attractor && vihu.attractor.on) {

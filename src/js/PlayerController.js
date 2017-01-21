@@ -12,6 +12,7 @@ var Player = {
   create: function (game, input) {
     this.input = input;
     this.player = game.add.sprite(200, 240, 'player');
+    this.player.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     this.player.anchor.setTo(0.5, 0.5);
     this.player.scale.setTo(4, 4);
     this.weapon1 = require('./Weapon1.js');
