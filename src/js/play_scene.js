@@ -1,5 +1,8 @@
 'use strict';
 
+var Background = require('./Background.js');
+var EnemyController = require('./EnemyController.js');
+
 var PlayScene = {
   preload: function () {
     this.load.image('player', 'images/player/ship.png');
@@ -7,6 +10,8 @@ var PlayScene = {
   },
 
   create: function () {
+    Background.create(this.game);
+    EnemyController.create(this.game);
     // Player setup
     this.player = this.game.add.sprite(200, 240, 'player');
     this.player.anchor.setTo(0.5, 0.5);
@@ -25,9 +30,12 @@ var PlayScene = {
     //  Cursor keys to fly + space to fire
     this.cursors = this.input.keyboard.createCursorKeys();
     this.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
-  },
 
-  update: function () {
+    
+  },
+  update: function() {
+    Background.update(this.game);
+    EnemyController.update(this.game, Background.time);
     this.updatePlayer();
 
   },
