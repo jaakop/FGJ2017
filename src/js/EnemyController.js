@@ -35,7 +35,7 @@ var EnemyController = {
         var scaleModifier = 1 + vihu.gravityMultiplier;
         vihu.sprite.scale.setTo(scaleModifier);
         game.physics.p2.enable(vihu.sprite);
-        vihu.sprite.body.setRectangle(16, 16);
+        //vihu.sprite.body.setRectangle(16, 16);
         vihu.sprite.body.setCollisionGroup(this.enemyCollisionGroup);
         
         if(vihu.gravityMultiplier > 1) {
