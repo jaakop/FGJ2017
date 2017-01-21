@@ -24,10 +24,16 @@ var PreloaderScene = {
 
     // TODO: load here the assets for the game
     this.game.load.image('bottom_tile', 'images/background/Tileset Walls.png');
-    this.game.load.image('top_tile', 'images/top_placeholder.png');
+    this.game.load.image('top_tile', 'images/background/Tileset Walls2.png');
     this.game.load.image('vihu1', 'images/characters/Vihu.png');
     this.game.load.image('vihu2', 'images/characters/Vihu2.png');
-    this.game.load.spritesheet('bottom_tilesprite', 'images/background/Tileset Walls.png', 32, 64, 1);
+    this.game.load.image('mountain', 'images/background/Mountain.png');
+    this.game.load.image('gravity_effect', 'images/effects/GravityEffect1.png');
+    this.game.load.spritesheet('bottom_tilesprite', 'images/background/Tileset Walls.png', 64, 128, 1);
+    this.game.load.spritesheet('top_tilesprite', 'images/background/TileSetWalls2.png', 64, 128, 1);
+    this.game.load.spritesheet('wall', 'images/background/Wall1.png', 32, 32, 1);
+    this.game.load.spritesheet('explosion', 'images/effects/Explosions.png', 32, 32, 3);
+    this.game.load.image('gravity_circle', 'images/effects/GravityCircle_placeholder.png');
   },
 
   create: function () {
@@ -38,7 +44,7 @@ var PreloaderScene = {
 
 
 window.onload = function () {
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
+  var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game');
 
   game.state.add('boot', BootScene);
   game.state.add('preloader', PreloaderScene);

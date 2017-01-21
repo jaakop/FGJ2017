@@ -3,33 +3,47 @@
 var Background = {
   mountainCollisionGroup: undefined,
   bottomGroup: undefined,
+  topGroup: undefined,
   time: 0,
   mountainArray: [{
     time: 500,
-    size: 2
+    size: 6
   },{
     time: 800,
-    size: 3
+    size: 8
   }],
   
   create: function (game) {
-    console.log("TESTESTE");
+    
     
     this.mountainCollisionGroup = game.physics.p2.createCollisionGroup();
     game.physics.p2.updateBoundsCollisionGroup();
     
-    this.bottomGroup = game.add.tileSprite(0, 542, 5000, 32, 'bottom_tilesprite');
+    this.wall = game.add.tileSprite(0,0, 5000, 264, 'wall');
+    this.wall.scale.setTo(4);
+    this.wall.alpha = 0.2;
+    
+    this.bottomGroup = game.add.tileSprite(0, game.height - 64, 5000, 32, 'bottom_tilesprite');
     this.bottomGroup.scale.setTo(2);
+    
+    this.topGroup = game.add.tileSprite(0, 0, 5000, 32, 'top_tilesprite');
+    this.topGroup.scale.setTo(2);
+    //game.physics.p2.enable(this.bottomGroup);
+    //this.bottomGroup.body.mass = 0;
+    //this.bottomGroup.body.collideWorldBounds = false;
+    //this.bottomGroup.body.setCollisionGroup(this.mountainCollisionGroup);
+    
   },
   update: function(game, playerCollisionGroup) {
     this.bottomGroup.x -= 2;
+    this.topGroup.x -= 2;
+    this.wall.x -= 1;
     this.time++;
     for(var mountainIndex in this.mountainArray) {
       var mountain = this.mountainArray[mountainIndex];
       
       if(mountain.time === this.time) {
-        console.log("MOUNTAIN!");
-        var mountainSprite = game.add.sprite(800, 600, "mountain");
+        var mountainSprite = game.add.sprite(game.width, game.height, "mountain");
         mountainSprite.anchor.x = 0;
         mountainSprite.anchor.y = 1;
         mountainSprite.scale.setTo(mountain.size);
