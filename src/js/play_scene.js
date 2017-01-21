@@ -16,15 +16,23 @@ var PlayScene = {
     Effects.create(this.game);
     
     PlayerController.create(this.game, this.input);
+    BackgroundController.create(this.game, PlayerController);
     
+    EnemyController.create(this.game, BackgroundController.mountainCollisionGroup);
+    BackgroundController.topGroup.body.collides(EnemyController.enemyCollisionGroup, function(mountain, enemy) {
+      Effects.explode(enemy.sprite, "explosion");
+    }, this);
     
-    BackgroundController.create(this.game, PlayerController.playerCollisionGroup);
-    EnemyController.create(this.game);
+    PlayerController.player.body.collides(BackgroundController.mountainCollisionGroup, function(player, mountain) {
+      Effects.explode(player.sprite, "explosion");
+    }, this);
     
     PlayerController.player.body.collides(EnemyController.enemyCollisionGroup, function(player, enemy) {
       Effects.explode(player.sprite, "explosion");
       Effects.explode(enemy.sprite, "explosion");
     }, this);
+    
+    
   },
   update: function() {
     

@@ -13,7 +13,7 @@ var Background = {
     size: 8
   }],
   
-  create: function (game) {
+  create: function (game, playerController) {
     
     
     this.mountainCollisionGroup = game.physics.p2.createCollisionGroup();
@@ -23,19 +23,27 @@ var Background = {
     this.wall.scale.setTo(4);
     this.wall.alpha = 0.2;
     
-    this.bottomGroup = game.add.tileSprite(0, game.height - 64, 5000, 32, 'bottom_tilesprite');
+    this.bottomGroup = game.add.tileSprite(0, game.height - 32, 5000, 32, 'bottom_tilesprite');
     this.bottomGroup.scale.setTo(2);
     
     this.topGroup = game.add.tileSprite(0, 0, 5000, 32, 'top_tilesprite');
     this.topGroup.scale.setTo(2);
-    //game.physics.p2.enable(this.bottomGroup);
-    //this.bottomGroup.body.mass = 0;
-    //this.bottomGroup.body.collideWorldBounds = false;
-    //this.bottomGroup.body.setCollisionGroup(this.mountainCollisionGroup);
+    
+    
+    game.physics.p2.enable([this.bottomGroup, this.topGroup]);
+    this.bottomGroup.body.kinematic = true;
+    this.bottomGroup.body.setCollisionGroup(this.mountainCollisionGroup);
+    this.bottomGroup.body.collides(playerController.playerCollisionGroup);
+    this.bottomGroup.body.velocity.x = -100;
+
+    this.topGroup.body.kinematic = true;
+    this.topGroup.body.setCollisionGroup(this.mountainCollisionGroup);
+    this.topGroup.body.collides(playerController.playerCollisionGroup);
+    this.topGroup.body.velocity.x = -100;
     
   },
   update: function(game, playerCollisionGroup) {
-    this.bottomGroup.x -= 2;
+    
     this.topGroup.x -= 2;
     this.wall.x -= 1;
     this.time++;

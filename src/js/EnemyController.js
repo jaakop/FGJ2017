@@ -1,41 +1,154 @@
 'use strict';
 var Effects = require('./Effects.js');
+var Weapon1 = require('./Weapon1.js');
 
 var EnemyController = {
   enemyTable: [],
   enemyGroup: undefined,
   enemyCollisionGroup: undefined,
   
+  mountainCollisionGroup: undefined,
+  
   closestEnemy: undefined,
   gravityEffect: undefined,
   
-  create: function (game) {
+  create: function (game, mountainCollisionGroup) {
     this.enemyCollisionGroup = game.physics.p2.createCollisionGroup();
     game.physics.p2.updateBoundsCollisionGroup();
     
-    
+    this.mountainCollisionGroup = mountainCollisionGroup;
     this.enemyGroup = game.add.group();
 /*    this.enemyGroup.enableBody = true;
     this.enemyGroup.physicsBodyType = Phaser.Physics.P2JS;
   */  
     
 
+
     this.enemyTable.push({
-      spriteName: "vihu1",
+      type: "boss",
+      spriteName: "vihu3",
       time: 10,
+      posy: 350,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    });
+
+    
+    this.enemyTable.push({
+      type: "boss",
+      spriteName: "vihu3",
+      time: 400,
+      posy: 150,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    });
+    
+    this.enemyTable.push({
+      type: "boss",
+      spriteName: "vihu3",
+      time: 400,
+      posy: 550,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    });
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 50,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 75,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 100,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 550,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 575,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    
+    this.enemyTable.push({
+      type: "follower",
+      spriteName: "vihu2",
+      time: 50,
+      posy: 600,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    });
+    
+    this.enemyTable.push({
+      type: "dragger",
+      spriteName: "vihu1",
+      time: 700,
       posy: 200,
       frequency: 200,
       gravityMultiplier: 5,
       sprite: undefined
     });
-    /*this.enemyTable.push({
+    
+    this.enemyTable.push({
+      type: "dragger",
       spriteName: "vihu1",
-      time: 110,
+      time: 700,
       posy: 400,
       frequency: 200,
       gravityMultiplier: 5,
       sprite: undefined
     });
+    
+    this.enemyTable.push({
+      type: "dragger",
+      spriteName: "vihu1",
+      time: 700,
+      posy: 600,
+      frequency: 200,
+      gravityMultiplier: 5,
+      sprite: undefined
+    });
+    
+    /*
     this.enemyTable.push({
       spriteName: "vihu1",
       time: 100,
@@ -142,11 +255,19 @@ var EnemyController = {
         vihu.sprite.outOfBoundsKill = true;
         
         vihu.sprite.body.collides(playerController.playerCollisionGroup);
+      
+        if(vihu.type === "boss") {
+          vihu.gun = Weapon1;
+          vihu.gun.initialize(game, 20, 'bullet1');
+          vihu.sprite.body.velocity.x = -50;
+          vihu.sprite.body.setRectangle(32, 32);
+        }
+        
        }
        
       if(vihu.sprite) {
         var distance = this.distanceBetween(playerController.player, vihu.sprite);
-        if(vihu.gravityMultiplier >= 1) {
+        if(vihu.type === "dragger") {
           vihu.sprite.body.thrustLeft(100);
           
           if(time%vihu.frequency === 1) {
@@ -154,8 +275,22 @@ var EnemyController = {
             vihu.attractor.start(false, 1000, 250, 7);
             this.calculateGravity(game, playerController.player, vihu);
           }
-        } else {
+        } else if(vihu.type === "follower") {
           this.accelerateToObject(game, vihu.sprite, playerController.player, 80 * (1 + vihu.gravityMultiplier));
+        } else if(vihu.type === "boss") {
+          
+          if(time%150 === 1) {
+            for(var i = 0; i < 5; i++) {
+              var bullet = vihu.gun.bullets.getFirstExists(false);
+              if(bullet) {
+                bullet.reset(vihu.sprite.x - 100, (vihu.sprite.y + (i*30)) - 75);
+                bullet.body.velocity.x = -500;
+                
+              }
+            }
+            
+              
+          }
         }
         
             
@@ -179,7 +314,7 @@ var EnemyController = {
       for(var vihuIndex in this.enemyTable) {
         var vihu = this.enemyTable[vihuIndex];
         if(vihu.sprite) {
-            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 500);
+            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 200);
         }
       }
     } 
@@ -201,7 +336,6 @@ var EnemyController = {
     } else if (distance < 900) { 
       speed = 300;
     }
-    console.log(speed * vihu.gravityMultiplier);
     this.accelerateToObject(game, player, vihu.sprite, 5* speed * vihu.gravityMultiplier);
   },
   distanceBetween: function(spriteA, spriteB){    

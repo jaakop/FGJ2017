@@ -27,6 +27,7 @@ var PreloaderScene = {
     this.game.load.image('top_tile', 'images/background/Tileset Walls2.png');
     this.game.load.image('vihu1', 'images/characters/Vihu.png');
     this.game.load.image('vihu2', 'images/characters/Vihu2.png');
+    this.game.load.image('vihu3', 'images/characters/Vihu3.png');
     this.game.load.image('mountain', 'images/background/Mountain.png');
     this.game.load.image('gravity_effect', 'images/effects/GravityEffect1.png');
     this.game.load.spritesheet('bottom_tilesprite', 'images/background/Tileset Walls.png', 64, 128, 1);
@@ -34,6 +35,7 @@ var PreloaderScene = {
     this.game.load.spritesheet('wall', 'images/background/Wall1.png', 32, 32, 1);
     this.game.load.spritesheet('explosion', 'images/effects/Explosions.png', 32, 32, 3);
     this.game.load.image('gravity_circle', 'images/effects/GravityCircle_placeholder.png');
+    this.game.load.image('bullet1', 'images/effects/LightBall.png');
   },
 
   create: function () {
