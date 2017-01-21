@@ -22,12 +22,15 @@ var Background = {
     this.wall = game.add.tileSprite(0,0, 5000, 264, 'wall');
     this.wall.scale.setTo(4);
     this.wall.alpha = 0.2;
+    this.wall.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
     this.bottomGroup = game.add.tileSprite(0, game.height - 32, 5000, 32, 'bottom_tilesprite');
     this.bottomGroup.scale.setTo(2);
+    this.bottomGroup.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
     this.topGroup = game.add.tileSprite(0, 0, 5000, 32, 'top_tilesprite');
     this.topGroup.scale.setTo(2);
+    this.topGroup.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
     
     game.physics.p2.enable([this.bottomGroup, this.topGroup]);
@@ -55,6 +58,7 @@ var Background = {
         mountainSprite.anchor.x = 0;
         mountainSprite.anchor.y = 1;
         mountainSprite.scale.setTo(mountain.size);
+        mountainSprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
         
         mountain.sprite = mountainSprite;
         
