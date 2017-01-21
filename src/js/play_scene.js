@@ -3,19 +3,24 @@
 var PlayScene = {
   preload: function () {
     this.load.image('player', 'images/player/ship.png');
+    this.load.image('bullet1', 'images/player/bullet1.png');
   },
 
   create: function () {
     // Player setup
     this.player = this.game.add.sprite(200, 240, 'player');
     this.player.anchor.setTo(0.5, 0.5);
-    this.player.scale.setTo(10, 10);
+    this.player.scale.setTo(5, 5);
+    this.weapon1 = require('./weapon1.js');
+    //this.weapon1.bullets = this.game.addGroup();
+
     //	Enable p2 physics
     this.game.physics.startSystem(Phaser.Physics.P2JS);
     this.game.physics.p2.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.player.body.fixedRotation = true;
-    this.player.body.damping = 0.9;
+    this.player.body.damping = 0.95;
+    this.weapon1.initialize(this.game, 20, 'bullet1');
 
     //  Cursor keys to fly + space to fire
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -28,24 +33,27 @@ var PlayScene = {
   },
 
   updatePlayer: function () {
-    //this.player.body.setZeroVelocity();
     var speed = 800;
     if (this.cursors.left.isDown) {
-      this.player.body.force.x = -speed;
-      //this.player.body.moveLeft(speed);
+      this.player.body.thrustLeft(speed);
     }
     else if (this.cursors.right.isDown) {
-      this.player.body.force.x = speed;
-      //this.player.body.moveRight(speed);
+      this.player.body.thrustRight(speed);
     }
 
     if (this.cursors.up.isDown) {
-      this.player.body.force.y = -speed;
-      //this.player.body.moveUp(speed);
+      this.player.body.thrust(speed);
     }
     else if (this.cursors.down.isDown) {
-      this.player.body.force.y = speed;
-      //this.player.body.moveDown(speed);
+      this.player.body.reverse(speed);
+    }
+
+    if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+      var bullet = this.weapon1.bullets.getFirstExists(false);
+      if(bullet){
+        bullet.reset(this.player.x+25, this.player.y);
+        bullet.body.velocity.x = 1000;
+      }
     }
 
   }
