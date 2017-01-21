@@ -260,8 +260,8 @@ var EnemyController = {
           vihu.gun = Weapon1;
           vihu.gun.initialize(game, 20, 'bullet1');
           vihu.sprite.body.velocity.x = -50;
-          vihu.sprite.body.setRectangle(32, 32);
-        }
+          //vihu.sprite.body.setRectangle(32, 32);
+        } 
         
        }
        
