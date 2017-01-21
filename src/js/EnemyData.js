@@ -100,7 +100,7 @@ var EnemyData = [
       type: "boss",
       spriteName: "vihu3",
       time: 1000,
-      posy: 150,
+      posy: 450,
       
       gravityMultiplier: 1,
       sprite: undefined
@@ -158,7 +158,7 @@ var EnemyData = [
       time: 1200,
       posy: 375,
       
-      gravityMultiplier: 0.5,
+      gravityMutiplier: 0.5,
       sprite: undefined
     },{
       type: "follower",
@@ -175,6 +175,30 @@ var EnemyData = [
       posy: 425,
       
       gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "dragger",
+      spriteName: "vihu1",
+      time: 1500,
+      posy: 150,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    },{
+      type: "dragger",
+      spriteName: "vihu1",
+      time: 1500,
+      posy: 200,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    },{
+      type: "dragger",
+      spriteName: "vihu1",
+      time: 1500,
+      posy: 250,
+      
+      gravityMultiplier: 1,
       sprite: undefined
     }
 ];

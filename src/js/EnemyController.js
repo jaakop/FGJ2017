@@ -38,6 +38,7 @@ var EnemyController = {
         game.physics.p2.enable(vihu.sprite);
         game.physics.p2.restitution = 0.02;
         //vihu.sprite.body.setRectangle(16, 16);
+
         vihu.sprite.body.setCollisionGroup(this.enemyCollisionGroup);
         
         if(vihu.gravityMultiplier > 1) {
@@ -59,6 +60,10 @@ var EnemyController = {
           //vihu.sprite.body.setRectangle(32, 32);
 
         } 
+        if(vihu.type === "mine") {
+          vihu.attractor = Effects.createAttractor(vihu.sprite);
+          
+        }
         
        }
        
@@ -91,6 +96,12 @@ var EnemyController = {
             
               
           }
+        } else if(vihu.type === "mine" && time%vihu.frequency) {
+//          this.calculateGravity(game, playerController.player, vihu);
+            vihu.attractor.start(false, 1000, 250, 7);
+          //this.accelerateToObject(game, vihu.sprite, playerController.emitter, 10);
+  
+          
         }
         
             
@@ -127,7 +138,7 @@ var EnemyController = {
     
   },
   calculateGravity: function(game, player, vihu) {
-    var speed = 200;
+    var speed = 100;
     var distance = this.distanceBetween(player, vihu.sprite);
     if (distance < 300) { 
       speed = 500;
