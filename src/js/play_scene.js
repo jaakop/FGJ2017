@@ -10,6 +10,7 @@ var PlayScene = {
   
   preload: function () {
     this.load.image('player', 'images/player/ship.png');
+    this.load.image('bullet1', 'images/player/bullet1.png');
   },
 
   create: function () {

@@ -1,6 +1,7 @@
 'use strict';
 
 var PlayScene = require('./play_scene.js');
+var IntroScene = require('./intro_scene.js');
 
 
 var BootScene = {
@@ -10,7 +11,6 @@ var BootScene = {
   },
 
   create: function () {
-    
     this.game.state.start('preloader');
   }
 };
@@ -24,7 +24,6 @@ var PreloaderScene = {
 
     // TODO: load here the assets for the game
     this.game.load.image('bottom_tile', 'images/background/Tileset Walls.png');
-    this.game.load.image('top_tile', 'images/background/Tileset Walls2.png');
     this.game.load.image('vihu1', 'images/characters/Vihu.png');
     this.game.load.image('vihu2', 'images/characters/Vihu2.png');
     this.game.load.image('vihu3', 'images/characters/Vihu3.png');
@@ -40,7 +39,7 @@ var PreloaderScene = {
 
   create: function () {
     
-    this.game.state.start('play');
+    this.game.state.start('intro');
   }
 };
 
@@ -50,6 +49,7 @@ window.onload = function () {
 
   game.state.add('boot', BootScene);
   game.state.add('preloader', PreloaderScene);
+  game.state.add('intro', IntroScene);
   game.state.add('play', PlayScene);
 
   game.state.start('boot');
