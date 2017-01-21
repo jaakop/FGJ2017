@@ -1,6 +1,6 @@
 'use strict';
 var Effects = require('./Effects.js');
-var Weapon1 = require('./Weapon1.js');
+var Weapon1 = require('./enemyWeapon.js');
 
 var EnemyController = {
   enemyTable: [],
@@ -147,91 +147,7 @@ var EnemyController = {
       gravityMultiplier: 5,
       sprite: undefined
     });
-    
-    /*
-    this.enemyTable.push({
-      spriteName: "vihu1",
-      time: 100,
-      posy: 300,
-      frequency: 200,
-      gravityMultiplier: 5,
-      sprite: undefined
-    });
-    
-    
-    this.enemyTable.push({
-      spriteName: "vihu1",
-      time: 170,
-      posy: 600,
-      frequency: 250,
-      gravityMultiplier: 5,
-      sprite: undefined
-    });
-    this.enemyTable.push({
-      spriteName: "vihu1",
-      time: 165,
-      posy: 550,
-      frequency: 300,
-      gravityMultiplier: 5,
-      sprite: undefined
-    });
-    this.enemyTable.push({
-      spriteName: "vihu1",
-      time: 160,
-      posy: 500,
-      frequency: 250,
-      gravityMultiplier: 5,
-      sprite: undefined
-    });
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 200,
-      posy: 400,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 220,
-      posy: 400,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 240,
-      posy: 400,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });
-    
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 300,
-      posy: 600,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 320,
-      posy: 600,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });
-    
-    this.enemyTable.push({
-      spriteName: "vihu2",
-      time: 340,
-      posy: 600,
-      gravityMultiplier: 0.5,
-      sprite: undefined
-    });*/
+  
   },
   update: function(game, playerController, time) {
     for(var vihuIndex in this.enemyTable) {
@@ -254,13 +170,15 @@ var EnemyController = {
         vihu.sprite.checkWorldBounds = true;
         vihu.sprite.outOfBoundsKill = true;
         
-        vihu.sprite.body.collides(playerController.playerCollisionGroup);
-      
+        vihu.sprite.body.collides([
+          playerController.playerCollisionGroup,
+          playerController.weapon1.collisionGroup ]);
+      console.log(playerController.weapon1.collisionGroup);
         if(vihu.type === "boss") {
           vihu.gun = Weapon1;
           vihu.gun.initialize(game, 20, 'bullet1');
           vihu.sprite.body.velocity.x = -50;
-          vihu.sprite.body.setRectangle(32, 32);
+          //vihu.sprite.body.setRectangle(32, 32);
         }
         
        }

@@ -33,7 +33,7 @@ var PlayScene = {
       Effects.explode(enemy.sprite, "explosion");
     }, this);
     
-    
+    PlayerController.collideBullets(EnemyController.enemyCollisionGroup);
   },
   update: function() {
     

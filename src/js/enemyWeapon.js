@@ -1,14 +1,12 @@
 'use strict';
 
-var Weapon1 = {
+var EnemyWeapon = {
     lastShot: 0,
     coolDown: 300,
     bullets: {},
     collisionGroup: undefined,
 
     initialize: function (game, num, image) {
-        console.log("C1");
-        console.log(this.collisionGroup);
         this.bullets = game.add.group();
         this.collisionGroup = game.physics.p2.createCollisionGroup();
         for (var i = 0; i < num; i++) {
@@ -33,4 +31,4 @@ var Weapon1 = {
     }
 }
 
-module.exports = Weapon1;
+module.exports = EnemyWeapon;

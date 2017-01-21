@@ -28,6 +28,8 @@ var Player = {
     this.player.body.setRectangle(16, 16);
     this.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 
+    this.weapon1.initialize(game, 20, 'bullet1');
+
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
     //  Cursor keys to fly + space to fire
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -62,7 +64,6 @@ var Player = {
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
       var bullet = this.weapon1.getBullet();
-      console.log('pum pum bullet: ' + bullet);
       if (bullet) {
         bullet.reset(this.player.x + 25, this.player.y);
         bullet.body.velocity.x = 1000;
@@ -78,7 +79,21 @@ var Player = {
       this.emitter.x = this.player.x;
       this.emitter.y = this.player.y;
     }
+  },
+
+  collideBullets: function (target) {
+    console.log(target);
+    for(var i in this.weapon1.bullets.children){
+      var bullet = this.weapon1.bullets.children[i];
+      bullet.body.collides(target, this.bulletHits, this);
+    }
+  },
+
+  bulletHits: function(bullet, target){
+    console.log("Bullet hits!");
+    Effects.explode(target.sprite, 'explosion');
   }
 };
+
 
 module.exports = Player;
