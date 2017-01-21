@@ -1,16 +1,14 @@
 'use strict';
 
-var Weapon1 = {
+var EnemyWeapon = {
     lastShot: 0,
     coolDown: 300,
     bullets: {},
     collisionGroup: undefined,
 
     initialize: function (game, num, image) {
-        console.log("C1");
-        console.log(this.collisionGroup);
         this.bullets = game.add.group();
-        this.collisionGroup = game.physics.p2.createCollisionGroup();
+        //this.collisionGroup = game.physics.p2.createCollisionGroup();
         for (var i = 0; i < num; i++) {
             var bullet = this.bullets.create(0, 0, image);
             bullet.exists = false;
@@ -21,7 +19,7 @@ var Weapon1 = {
             bullet.body.collideWorldBounds = false;
             bullet.checkWorldBounds = true;
             bullet.outOfBoundsKill = true;
-            bullet.body.setCollisionGroup(this.collisionGroup);
+            //bullet.body.setCollisionGroup(this.collisionGroup);
         }
     },
 
@@ -33,4 +31,4 @@ var Weapon1 = {
     }
 }
 
-module.exports = Weapon1;
+module.exports = EnemyWeapon;

@@ -12,9 +12,12 @@ var Effects = {
     sprite.kill();
 
     var explosion = this.game.add.sprite(sprite.x, sprite.y, explosionName);
-    explosion.animations.add("boom");
+    var anim = explosion.animations.add("boom");
     explosion.scale.setTo(2);
-    explosion.animations.play("boom", 3, true);
+    anim.onComplete.add(function(){
+      explosion.kill();
+    });
+    explosion.animations.play("boom", 3, false);
   },
   createAttractor: function (enemy) {
     var attractor = this.game.add.emitter(enemy.centerX, enemy.centerY, 10);
