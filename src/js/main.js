@@ -39,6 +39,7 @@ var PreloaderScene = {
     this.game.load.image('bullet1', 'images/effects/LightBall.png');
     this.game.load.image('enemy_bullet1', 'images/effects/EnemyLightBall.png');
     this.game.load.image('mine', 'images/characters/StaticEmitter.png');
+    this.game.load.image('engine_particle', 'images/effects/EngineParticle.png');
     
     this.game.load.audio('flush', 'sounds/Gravitysound.wav');
     this.game.load.audio('explosion', 'sounds/Explotion.wav');

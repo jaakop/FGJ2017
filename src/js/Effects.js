@@ -44,7 +44,7 @@ var Effects = {
   },
   trailEmitter: function (player) {
     var emitter = this.game.add.emitter(player.x - 10, player.y, 30);
-    emitter.makeParticles('bullet1');
+    emitter.makeParticles('engine_particle');
     emitter.setAlpha(1, 0.5, 600);
     emitter.setScale(10, 4, 10, 4, 1000);
     emitter.gravity = 0;

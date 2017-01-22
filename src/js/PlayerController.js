@@ -84,6 +84,7 @@ var Player = {
       this.sounds["flush"].play();
     } else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
       var bullet = this.weapon1.getBullet();
+      
       if (bullet) {
         bullet.reset(this.player.x + 25, this.player.y);
         bullet.body.velocity.x = 1000;

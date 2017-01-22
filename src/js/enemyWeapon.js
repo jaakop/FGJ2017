@@ -23,6 +23,7 @@ var EnemyWeapon = {
         }
     },
 
+    
     getBullet: function(){
         if(this.lastShot + this.coolDown < Date.now()){
             this.lastShot = Date.now();

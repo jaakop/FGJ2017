@@ -92,6 +92,7 @@ var EnemyController = {
               if(bullet) {
                 bullet.reset(vihu.sprite.x - 100, (vihu.sprite.y + (i*30)) - 75);
                 bullet.body.velocity.x = -500;
+                bullet.body.inertia = 10;
                 bullet.body.setCollisionGroup(this.enemyCollisionGroup);
                 bullet.body.collides(playerController.playerCollisionGroup);
               }
