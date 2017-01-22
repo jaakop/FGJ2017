@@ -182,7 +182,7 @@ var EnemyData = [
       time: 1500,
       posy: 150,
       
-      gravityMultiplier: 1,
+      gravityMultiplier: 5,
       sprite: undefined
     },{
       type: "dragger",
@@ -190,7 +190,7 @@ var EnemyData = [
       time: 1500,
       posy: 200,
       
-      gravityMultiplier: 1,
+      gravityMultiplier: 5,
       sprite: undefined
     },{
       type: "dragger",
@@ -198,7 +198,95 @@ var EnemyData = [
       time: 1500,
       posy: 250,
       
+      gravityMultiplier: 5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1550,
+      posy: 375,
+      
+      gravityMutiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1550,
+      posy: 400,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1550,
+      posy: 425,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "boss",
+      spriteName: "vihu3",
+      time: 1650,
+      posy: 550,
+      
       gravityMultiplier: 1,
+      sprite: undefined
+    },{
+      type: "boss",
+      spriteName: "vihu3",
+      time: 1650,
+      posy: 150,
+      
+      gravityMultiplier: 1,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 470,
+      
+      gravityMutiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 430,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 410,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 290,
+      
+      gravityMutiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 270,
+      
+      gravityMultiplier: 0.5,
+      sprite: undefined
+    },{
+      type: "follower",
+      spriteName: "vihu2",
+      time: 1700,
+      posy: 240,
+      
+      gravityMultiplier: 0.5,
       sprite: undefined
     }
 ];

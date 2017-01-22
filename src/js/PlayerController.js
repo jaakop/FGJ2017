@@ -8,6 +8,10 @@ var Player = {
   input: undefined,
   playerCollisionGroup: undefined,
   emitter: undefined,
+  sounds: {
+    flush: undefined,
+    laser: undefined
+  },
 
   create: function (game, input) {
     this.input = input;
@@ -39,9 +43,16 @@ var Player = {
 
     this.emitter = Effects.createEmitter(this.player);
     this.trailEmitter = Effects.trailEmitter(this.player);
+    
+    this.sounds["flush"] = game.add.audio('flush');
+    this.sounds["laser"] = game.add.audio('laser');
+    this.sounds["laser"].volume = 0.8;
+    
   },
   update: function (game, cursors) {
-    this.trailEmitter.on = true;
+    this.trailEmitter.on = this.player.alive;
+    
+    
     this.trailEmitter.frequency = 500;
     this.trailEmitter.x = this.player.x - 25;
     this.trailEmitter.y = this.player.y;
@@ -68,6 +79,7 @@ var Player = {
       if (bullet) {
         bullet.reset(this.player.x + 25, this.player.y);
         bullet.body.velocity.x = 1000;
+        this.sounds["laser"].play();
       }
     }
 
@@ -75,6 +87,8 @@ var Player = {
       this.emitter.x = this.player.x;
       this.emitter.y = this.player.y;
       this.emitter.start(false, 1000, 250, 7);
+      
+      this.sounds["flush"].play();
     }
     if (this.emitter.on) {
       this.emitter.x = this.player.x;
@@ -90,7 +104,7 @@ var Player = {
   },
 
   bulletHits: function(bullet, target){
-    Effects.explode(target.sprite, 'explosion');
+    //Effects.explode(target.sprite, 'explosion');
     bullet.sprite.kill();
   }
 };

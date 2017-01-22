@@ -19,6 +19,7 @@ var Weapon1 = {
             bullet.anchor.setTo(0.5, 0.5);
             bullet.body.fixedRotation = true;
             bullet.body.collideWorldBounds = false;
+            bullet.body.mass = 1;
             bullet.checkWorldBounds = true;
             bullet.outOfBoundsKill = true;
             bullet.body.setCollisionGroup(this.collisionGroup);

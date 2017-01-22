@@ -31,13 +31,14 @@ var EnemyController = {
       if(vihu.time === time && !vihu.sprite) {
         vihu.sprite = game.add.sprite(game.width, vihu.posy, vihu.spriteName);
         vihu.sprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
-        
         this.enemyGroup.addChild(vihu.sprite);
         
         var scaleModifier = 1 + vihu.gravityMultiplier;
         vihu.sprite.scale.setTo(scaleModifier);
         game.physics.p2.enable(vihu.sprite);
-        vihu.sprite.body.setRectangle(16, 16);
+        game.physics.p2.restitution = 0.02;
+        //vihu.sprite.body.setRectangle(16, 16);
+
         vihu.sprite.body.setCollisionGroup(this.enemyCollisionGroup);
         
         if(vihu.gravityMultiplier > 1) {
@@ -50,19 +51,17 @@ var EnemyController = {
         
         vihu.sprite.body.collides([
           playerController.playerCollisionGroup,
-          playerController.weapon1.collisionGroup ]);
-      console.log(playerController.weapon1.collisionGroup);
+          playerController.weapon1.collisionGroup,
+          this.mountainCollisionGroup
+        ]);
+        
         if(vihu.type === "boss") {
           vihu.gun = Weapon1;
           vihu.gun.initialize(game, 20, 'bullet1');
-          vihu.sprite.body.velocity.x = -50;
+          vihu.sprite.body.thrustLeft(500);
           //vihu.sprite.body.setRectangle(32, 32);
 
         } 
-        if(vihu.type === "mine") {
-          vihu.attractor = Effects.createAttractor(vihu.sprite);
-          
-        }
         
        }
        
@@ -77,9 +76,11 @@ var EnemyController = {
             this.calculateGravity(game, playerController.player, vihu);
           }
         } else if(vihu.type === "follower") {
-          this.accelerateToObject(game, vihu.sprite, playerController.player, 80 * (1 + vihu.gravityMultiplier));
+          vihu.sprite.body.mass = 3;
+          this.accelerateToObject(game, vihu.sprite, playerController.player, 200 * (1 + vihu.gravityMultiplier));
         } else if(vihu.type === "boss") {
-          
+          vihu.sprite.body.thrustLeft(100);
+          vihu.sprite.body.mass = 4;
           if(time%150 === 1) {
             for(var i = 0; i < 5; i++) {
               var bullet = vihu.gun.bullets.getFirstExists(false);
