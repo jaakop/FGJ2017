@@ -1,8 +1,8 @@
 'use strict';
 
-var BackgroundController = require('./BackgroundController.js');
-var EnemyController = require('./EnemyController.js');
-var PlayerController = require('./PlayerController.js');
+var BackgroundController = undefined;
+var EnemyController = undefined;
+var PlayerController = undefined;
 var Effects = require('./Effects.js');
 
 var PlayScene = {
@@ -14,9 +14,14 @@ var PlayScene = {
   preload: function () {
     this.load.image('player', 'images/player/ship.png');
     this.load.image('bullet1', 'images/player/bullet1.png');
+
   },
 
   create: function () {
+    BackgroundController = require('./BackgroundController.js');
+    EnemyController = require('./EnemyController.js');
+    PlayerController = require('./PlayerController.js');
+
     this.sounds["explosion"] = this.game.add.audio('explosion');
 
     Effects.create(this.game);
@@ -48,6 +53,10 @@ var PlayScene = {
     BackgroundController.update(this.game);
     EnemyController.update(this.game, PlayerController, BackgroundController.time);
     PlayerController.update(this.game);
+
+    if(this.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
+      location.reload();
+    }
     
   },
 

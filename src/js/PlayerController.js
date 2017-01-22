@@ -74,25 +74,19 @@ var Player = {
       //this.player.body.moveDown(speed);
     }
 
-    if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-      var bullet = this.weapon1.getBullet();
-      if (bullet) {
-        bullet.reset(this.player.x + 25, this.player.y);
-        bullet.body.velocity.x = 1000;
-        this.sounds["laser"].play();
-      }
-    }
-
     if (this.input.keyboard.isDown(Phaser.Keyboard.ENTER) && !this.emitter.on) {
       this.emitter.x = this.player.x;
       this.emitter.y = this.player.y;
       this.emitter.start(false, 1000, 250, 7);
       
       this.sounds["flush"].play();
-    }
-    if (this.emitter.on) {
-      this.emitter.x = this.player.x;
-      this.emitter.y = this.player.y;
+    } else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+      var bullet = this.weapon1.getBullet();
+      if (bullet) {
+        bullet.reset(this.player.x + 25, this.player.y);
+        bullet.body.velocity.x = 1000;
+        this.sounds["laser"].play();
+      }
     }
   },
 
