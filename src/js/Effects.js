@@ -7,7 +7,7 @@ var Effects = {
     this.game = game;
   },
 
-  explode: function (sprite, explosionName) {
+  explode: function (sprite, explosionName, callBack) {
     console.log(sprite);
     sprite.kill();
 
@@ -16,6 +16,9 @@ var Effects = {
     explosion.scale.setTo(2);
     anim.onComplete.add(function(){
       explosion.kill();
+      if(callBack){
+        callBack();
+      }
     });
     explosion.animations.play("boom", 3, false);
   },
