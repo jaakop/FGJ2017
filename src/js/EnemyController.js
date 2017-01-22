@@ -55,13 +55,17 @@ var EnemyController = {
           this.mountainCollisionGroup
         ]);
         
+        vihu.sprite.health = 1000;
+        
         if(vihu.type === "boss") {
           vihu.gun = Weapon1;
           vihu.gun.initialize(game, 20, 'bullet1');
           vihu.sprite.body.thrustLeft(500);
           //vihu.sprite.body.setRectangle(32, 32);
 
-        } 
+        } else if(vihu.type === "follower") {
+          vihu.sprite.health = 5;
+        }
         
        }
        
@@ -77,6 +81,7 @@ var EnemyController = {
           }
         } else if(vihu.type === "follower") {
           vihu.sprite.body.mass = 3;
+          
           this.accelerateToObject(game, vihu.sprite, playerController.player, 200 * (1 + vihu.gravityMultiplier));
         } else if(vihu.type === "boss") {
           vihu.sprite.body.thrustLeft(100);

@@ -106,6 +106,9 @@ var Player = {
   bulletHits: function(bullet, target){
     //Effects.explode(target.sprite, 'explosion');
     bullet.sprite.kill();
+    if(!--target.sprite.health) {
+      Effects.explode(target.sprite, 'explosion');
+    }
   }
 };
 
