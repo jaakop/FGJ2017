@@ -24,11 +24,11 @@ var Background = {
     this.wall.alpha = 0.2;
     this.wall.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
-    this.bottomGroup = game.add.tileSprite(0, game.height - 32, 5000, 32, 'bottom_tilesprite');
+    this.bottomGroup = game.add.tileSprite(0, game.height - 32, 10000, 32, 'bottom_tilesprite');
     this.bottomGroup.scale.setTo(2);
     this.bottomGroup.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
-    this.topGroup = game.add.tileSprite(0, 0, 5000, 32, 'top_tilesprite');
+    this.topGroup = game.add.tileSprite(0, 0, 10000, 32, 'top_tilesprite');
     this.topGroup.scale.setTo(2);
     this.topGroup.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     
