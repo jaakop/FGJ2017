@@ -10,11 +10,13 @@ var Player = {
   emitter: undefined,
   sounds: {
     flush: undefined,
-    laser: undefined
+    laser: undefined,
+    hit: undefined
   },
 
   create: function (game, input) {
     this.input = input;
+    this.sounds["hit"] = game.add.audio('hit');
     this.player = game.add.sprite(200, 240, 'player');
     this.player.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
     this.player.anchor.setTo(0.5, 0.5);
@@ -100,6 +102,9 @@ var Player = {
   bulletHits: function(bullet, target){
     //Effects.explode(target.sprite, 'explosion');
     bullet.sprite.kill();
+    console.log("HITPLAY");
+    this.sounds["hit"].play();
+    
     if(!--target.sprite.health) {
       Effects.explode(target.sprite, 'explosion');
     }

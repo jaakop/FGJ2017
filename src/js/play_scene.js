@@ -23,7 +23,7 @@ var PlayScene = {
     PlayerController = require('./PlayerController.js');
 
     this.sounds["explosion"] = this.game.add.audio('explosion');
-
+    
     Effects.create(this.game);
     
     PlayerController.create(this.game, this.input);

@@ -39,9 +39,10 @@ var PreloaderScene = {
     this.game.load.image('bullet1', 'images/effects/LightBall.png');
     this.game.load.image('mine', 'images/characters/StaticEmitter.png');
     
-    this.game.load.audio('flush', 'sounds/flush.wav');
-    this.game.load.audio('explosion', 'sounds/explosion.wav');
-    this.game.load.audio('laser', 'sounds/laser.wav');
+    this.game.load.audio('flush', 'sounds/Gravitysound.wav');
+    this.game.load.audio('explosion', 'sounds/Explotion.wav');
+    this.game.load.audio('laser', 'sounds/PiuPiu.wav');
+    this.game.load.audio('hit', 'sounds/Hit.wav');
   },
 
   create: function () {
