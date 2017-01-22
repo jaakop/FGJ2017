@@ -34,7 +34,11 @@ var PlayScene = {
       Effects.explode(enemy.sprite, "explosion");
       this.sounds["explosion"].play();
     }, this);
-
+    BackgroundController.bottomGroup.body.collides(EnemyController.enemyCollisionGroup, function (mountain, enemy) {
+      Effects.explode(enemy.sprite, "explosion");
+      this.sounds["explosion"].play();
+    }, this);
+    
     PlayerController.player.body.collides(BackgroundController.mountainCollisionGroup, function (player, mountain) {
       Effects.explode(player.sprite, "explosion", function () {
         var popup = thisGame.add.sprite(thisGame.width/2, thisGame.height/2, 'gameover');
