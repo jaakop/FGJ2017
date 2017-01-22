@@ -123,7 +123,10 @@ var EnemyController = {
       for(var vihuIndex in this.enemyTable) {
         var vihu = this.enemyTable[vihuIndex];
         if(vihu.sprite) {
-            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 200);
+          var distance = this.distanceBetween(playerController.player, vihu.sprite);
+          if(distance < 300) {
+            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 400);
+          }
         }
       }
     } 
