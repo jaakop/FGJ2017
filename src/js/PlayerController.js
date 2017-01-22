@@ -15,6 +15,7 @@ var Player = {
   },
   gravityTime: 0,
   gravityCooldown: 5000,
+  gravityTextShown: false,
 
   create: function (game, input) {
     this.input = input;
@@ -78,17 +79,27 @@ var Player = {
       //this.player.body.moveDown(speed);
     }
 
+    if (this.gravityTime + this.gravityCooldown < Date.now() && !this.gravityTextShown) {
+      this.gravityTextShown = true;
+      var text = game.add.sprite(this.player.x, this.player.y - 30, 'bomb_ready');
+      text.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
+      text.anchor.setTo(0.5, 0.5);
+      text.scale.setTo(4, 4);
+      text.lifespan = 1500;
+    }
+
     if (this.input.keyboard.isDown(Phaser.Keyboard.ENTER) && !this.emitter.on) {
       this.emitter.x = this.player.x;
       this.emitter.y = this.player.y;
       if (this.gravityTime + this.gravityCooldown < Date.now()) {
         this.emitter.start(false, 1000, 250, 7);
         this.gravityTime = Date.now();
+        this.gravityTextShown = false;
         this.sounds["flush"].play();
       }
     } else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
       var bullet = this.weapon1.getBullet();
-      
+
       if (bullet) {
         bullet.reset(this.player.x + 25, this.player.y);
         bullet.body.velocity.x = 1000;

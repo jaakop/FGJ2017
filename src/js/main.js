@@ -26,6 +26,7 @@ var PreloaderScene = {
 
     // TODO: load here the assets for the game
     this.game.load.image('gameover', 'images/game_over.png');
+    this.game.load.image('bomb_ready', 'images/player/bomb_ready.png');
     this.game.load.image('vihu1', 'images/characters/Vihu.png');
     this.game.load.image('vihu2', 'images/characters/Vihu2.png');
     this.game.load.image('vihu3', 'images/characters/Vihu3.png');
