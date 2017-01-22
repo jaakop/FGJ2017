@@ -55,6 +55,7 @@ var Background = {
       
       if(mountain.time === this.time) {
         var mountainSprite = game.add.sprite(game.width, game.height, "mountain");
+        mountainSprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
         mountainSprite.anchor.x = 0;
         mountainSprite.anchor.y = 1;
         mountainSprite.scale.setTo(mountain.size);

@@ -51,18 +51,20 @@ var EnemyController = {
         
         vihu.sprite.body.collides([
           playerController.playerCollisionGroup,
-          playerController.weapon1.collisionGroup ]);
-      console.log(playerController.weapon1.collisionGroup);
+          playerController.weapon1.collisionGroup,
+          this.mountainCollisionGroup
+        ]);
+        
+        vihu.sprite.health = 1000;
+        
         if(vihu.type === "boss") {
           vihu.gun = Weapon1;
           vihu.gun.initialize(game, 20, 'bullet1');
           vihu.sprite.body.thrustLeft(500);
           //vihu.sprite.body.setRectangle(32, 32);
 
-        } 
-        if(vihu.type === "mine") {
-          vihu.attractor = Effects.createAttractor(vihu.sprite);
-          
+        } else if(vihu.type === "follower") {
+          vihu.sprite.health = 5;
         }
         
        }
@@ -79,6 +81,7 @@ var EnemyController = {
           }
         } else if(vihu.type === "follower") {
           vihu.sprite.body.mass = 3;
+          
           this.accelerateToObject(game, vihu.sprite, playerController.player, 200 * (1 + vihu.gravityMultiplier));
         } else if(vihu.type === "boss") {
           vihu.sprite.body.thrustLeft(100);
@@ -96,13 +99,7 @@ var EnemyController = {
             
               
           }
-        } else if(vihu.type === "mine" && time%vihu.frequency) {
-//          this.calculateGravity(game, playerController.player, vihu);
-            vihu.attractor.start(false, 1000, 250, 7);
-          //this.accelerateToObject(game, vihu.sprite, playerController.emitter, 10);
-  
-          
-        }
+        } 
         
             
         if(vihu.attractor && vihu.attractor.on) {

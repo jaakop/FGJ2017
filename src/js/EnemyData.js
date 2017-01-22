@@ -1,6 +1,7 @@
 var EnemyData = [
   // WAVE1
   {
+<<<<<<< HEAD
     type: "follower",
     spriteName: "vihu2",
     time: 10,
