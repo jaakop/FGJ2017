@@ -59,7 +59,7 @@ var EnemyController = {
         
         if(vihu.type === "boss") {
           vihu.gun = Weapon1;
-          vihu.gun.initialize(game, 20, 'bullet1');
+          vihu.gun.initialize(game, 20, 'enemy_bullet1');
           vihu.sprite.body.thrustLeft(500);
           //vihu.sprite.body.setRectangle(32, 32);
 
