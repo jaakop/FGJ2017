@@ -125,7 +125,7 @@ var EnemyController = {
         if(vihu.sprite) {
           var distance = this.distanceBetween(playerController.player, vihu.sprite);
           if(distance < 300) {
-            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 400);
+            this.accelerateFromObject(game, vihu.sprite, playerController.emitter, 700);
           }
         }
       }
