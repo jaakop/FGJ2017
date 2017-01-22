@@ -13,6 +13,8 @@ var Player = {
     laser: undefined,
     hit: undefined
   },
+  gravityTime: 0,
+  gravityCooldown: 5000,
 
   create: function (game, input) {
     this.input = input;
@@ -45,16 +47,16 @@ var Player = {
 
     this.emitter = Effects.createEmitter(this.player);
     this.trailEmitter = Effects.trailEmitter(this.player);
-    
+
     this.sounds["flush"] = game.add.audio('flush');
     this.sounds["laser"] = game.add.audio('laser');
     this.sounds["laser"].volume = 0.8;
-    
+
   },
   update: function (game, cursors) {
     this.trailEmitter.on = this.player.alive;
-    
-    
+
+
     this.trailEmitter.frequency = 500;
     this.trailEmitter.x = this.player.x - 25;
     this.trailEmitter.y = this.player.y;
@@ -79,9 +81,11 @@ var Player = {
     if (this.input.keyboard.isDown(Phaser.Keyboard.ENTER) && !this.emitter.on) {
       this.emitter.x = this.player.x;
       this.emitter.y = this.player.y;
-      this.emitter.start(false, 1000, 250, 7);
-      
-      this.sounds["flush"].play();
+      if (this.gravityTime + this.gravityCooldown < Date.now()) {
+        this.emitter.start(false, 1000, 250, 7);
+        this.gravityTime = Date.now();
+        this.sounds["flush"].play();
+      }
     } else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
       var bullet = this.weapon1.getBullet();
       if (bullet) {
@@ -93,19 +97,19 @@ var Player = {
   },
 
   collideBullets: function (target) {
-    for(var i in this.weapon1.bullets.children){
+    for (var i in this.weapon1.bullets.children) {
       var bullet = this.weapon1.bullets.children[i];
       bullet.body.collides(target, this.bulletHits, this);
     }
   },
 
-  bulletHits: function(bullet, target){
+  bulletHits: function (bullet, target) {
     //Effects.explode(target.sprite, 'explosion');
     bullet.sprite.kill();
     console.log("HITPLAY");
     this.sounds["hit"].play();
-    
-    if(!--target.sprite.health) {
+
+    if (!--target.sprite.health) {
       Effects.explode(target.sprite, 'explosion');
     }
   }
